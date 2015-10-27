@@ -8,7 +8,7 @@ class EncryptorTest < Minitest::Test
 
   def test_encryptor_takes_message
     encryptor = Encryptor.new("Message")
-    assert_equal "message", encryptor.message
+    assert_equal "Message", encryptor.message
   end
 
   def test_encryptor_gens_key
@@ -25,5 +25,18 @@ class EncryptorTest < Minitest::Test
       string.to_i
     end
     assert_equal encryptor.date, date_key_test
+  end
+
+  def test_key_combine_returns_product
+    encryptor = Encryptor.new("message", 10309, 103092)
+    encryptor.offset_combine
+    assert_equal [10, 7, 36, 13], encryptor.offset
+  end
+
+  def test_encrypts_message
+    encryptor = Encryptor.new("Message", 10309, 103092)
+    encryptor.offset_combine
+    encryptor.message_to_array
+    assert_equal ['W', 'l', '<', "\"", 'h', '0', 'o'], encryptor.encrypt
   end
 end
