@@ -3,12 +3,12 @@ require_relative 'date_gen'
 
 class Encryptor
 
-  attr_reader :message, :date
+  attr_reader :message, :date, :key
 
-  def initialize(message, key = nil, date = nil)
+  def initialize(message, key = nil)
     @message = message.downcase
-    @key = Key.new
-    @date = DateGen.new(date).date_key
+    @key = Key.new(key).key
+    @date = DateGen.new.date_key
   end
 
 end

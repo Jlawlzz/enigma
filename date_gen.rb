@@ -6,6 +6,7 @@ class DateGen
 
   def initialize(date = Time.now.strftime('%d%m%y'))
     @date = date.to_i
+    get_key_from_date
   end
 
   def get_key_from_date

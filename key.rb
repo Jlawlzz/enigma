@@ -26,7 +26,7 @@ class Key
     shift_values = shift_values.map do |string|
       string.to_i
     end
-    shift_values
+    @key = shift_values
   end
 
 end
