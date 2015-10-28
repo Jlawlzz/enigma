@@ -1,6 +1,6 @@
-require 'Minitest'
-require 'Minitest/Autorun'
-require 'Minitest/Pride'
+gem 'minitest', '~> 5.2'
+require 'minitest/autorun'
+require 'minitest/pride'
 require_relative 'offset_combine'
 
 class OffsetCombineTest < Minitest::Test

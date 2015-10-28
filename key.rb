@@ -29,4 +29,7 @@ class Key
     @key = shift_values
   end
 
+  def key_unformat(key_array)
+  end
+
 end

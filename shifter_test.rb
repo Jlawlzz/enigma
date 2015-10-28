@@ -24,7 +24,8 @@ class ShifterTest < Minitest::Test
 
   def test_finds_new_value_over_array
     shift = Shifter.new('f', 41)
-    assert_equal '6', shift.new_index
+    assert_equal '4', shift.new_index
   end
+
 
 end

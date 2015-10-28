@@ -1,4 +1,5 @@
 
+
 class DateGen
 
   attr_reader :date, :date_key

@@ -2,7 +2,7 @@
 
 class Shifter
 
-  attr_reader :character_num, :total_shift, :new_index
+  attr_reader :character_num, :total_shift, :crypt_char
 
   def initialize(character, shift)
     @range = (' '..'z').to_a
@@ -16,7 +16,7 @@ class Shifter
   end
 
   def new_index
-    @new_index = @range[@total_shift % 91]
+    @crypt_char = @range[@total_shift % 91]
   end
 
 end
