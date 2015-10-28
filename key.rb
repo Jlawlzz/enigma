@@ -1,5 +1,4 @@
 
-
 class Key
 
   attr_reader :key
@@ -28,8 +27,4 @@ class Key
     end
     @key = shift_values
   end
-
-  def key_unformat(key_array)
-  end
-
 end
