@@ -15,10 +15,10 @@ class Offset
       number *= -1
     end
     @offset = neg_offset
-    offset
+    offsets_message
   end
 
-  def offset
+  def offsets_message
     offset_array = @message.chars.map.with_index do |char, index|
       Shifter.new(char, @offset[index % 4]).crypt_char
     end
