@@ -23,7 +23,7 @@ class Enigma
     return decrypted_message.offset_make_negative
   end
 
-  def crack(date = nil, message)
+  def crack(message, date = nil)
     date_set = DateGen.new(date).date_key
     offset_combine = OffsetCombine.combine([0,0,0,0], date_set)
     decrypted_message = Offset.new(message, offset_combine)

@@ -17,7 +17,7 @@ class EnigmaTest < Minitest::Test
 
   def test_if_enigma_cracks
     enigma = Enigma.new
-    assert_equal "Message ..end..", enigma.crack(010100, "^':Er),M?K,@uKP")
+    assert_equal "Message ..end..", enigma.crack("^':Er),M?K,@uKP", 010100)
   end
 
 end
