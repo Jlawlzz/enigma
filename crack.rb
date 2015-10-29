@@ -1,39 +1,19 @@
 require_relative 'shifter'
-require_relative 'key'
-require_relative 'date_gen'
 require_relative 'offset_combine'
 require 'pry'
 
 class Crack
 
-  attr_reader :message_char, :date, :key, :final_key
+  attr_reader :message_char, :final_key
 
-  def initialize(message, date = nil)
-    @message = message
+  def initialize(message)
     @message_char = message.chars
-    @date_offset = DateGen.new(date).date_key
     @final_key = final_key
-    offsets_make_negative
+    isolate_end_chars(@message_char)
   end
 
-  def offsets_make_negative
-    neg_date_offset = @date_offset.map do |offset|
-      offset *= -1
-    end
-    decrypt(neg_date_offset)
-    return neg_date_offset
-  end
-
-  def decrypt(neg_offset)
-    dedated_array = @message_char.map.with_index do |char, index|
-      Shifter.new(char, neg_offset[index % 4]).crypt_char
-    end
-    isolate_end_chars(dedated_array)
-    return dedated_array
-  end
-
-  def isolate_end_chars(dedated_array)
-    dedated_end_chars = dedated_array[-4..-1]
+  def isolate_end_chars(message_char)
+    dedated_end_chars = message_char[-4..-1]
     index_dedated_and_target_chars(dedated_end_chars)
     return dedated_end_chars
   end
@@ -53,6 +33,7 @@ class Crack
     end
   end
 
+#can i make negative to force correct answer?
   def deduce_key_offsets(ideal_index, dedated_index)
     key_offsets = dedated_index.map.with_index do |offset_index, index|
       offset_index - ideal_index[index]
@@ -72,8 +53,20 @@ class Crack
   def rotate_end_chars(key_offsets)
     rotate_remain = @message_char.length % 4
     key_offsets.rotate!(-rotate_remain)
-    create_final_key(key_offsets)
+    fill_in_zeroes(key_offsets)
     return key_offsets
+  end
+
+  def fill_in_zeroes(key_offsets)
+    key_offsets.map! do |offset|
+      if offset < 10
+        offset = '0' + offset.to_s
+        offset.to_i
+      else
+        offset
+      end
+    end
+    create_final_key(key_offsets)
   end
 
   def create_final_key(key_offsets)

@@ -5,16 +5,6 @@ require_relative 'crack'
 
 class CrackTest < Minitest::Test
 
-  def test_offsets_made_negative
-    crack = Crack.new("v0+[?", 010100)
-    assert_equal [-5,-6,0,0], crack.offsets_make_negative
-  end
-
-  def test_decrypt_date_offsets
-    crack = Crack.new("v0+[?", 010100)
-    assert_equal ["q", "*", "+", "[", ":"], crack.decrypt([-5,-6,0,0])
-  end
-
   def test_isolate_last_four_of_decrypt
     crack = Crack.new("v0+[?", 010100)
     assert_equal ["*", "+", "[", ":"], crack.isolate_end_chars(["q", "*", "+", "[", ":"])

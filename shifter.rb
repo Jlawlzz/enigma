@@ -1,7 +1,8 @@
 
+
 class Shifter
 
-  attr_reader :total_shift, :crypt_char
+  attr_reader :crypt_char, :crack_char
 
   def initialize(character, shift)
     range = (' '..'z').to_a

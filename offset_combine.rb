@@ -1,4 +1,4 @@
-
+require 'pry'
 
 class OffsetCombine
 
@@ -6,7 +6,8 @@ class OffsetCombine
     combine_offset = key.map.with_index do |value, index|
       value += date[index]
     end
-    # combine_offset
+    return combine_offset
   end
+
 
 end
