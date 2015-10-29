@@ -1,7 +1,8 @@
+require 'pry'
 
 class Key
 
-  attr_reader :key
+  attr_reader :key_offsets
 
   def initialize(key = nil)
     @key = key
@@ -13,6 +14,7 @@ class Key
       @key = rand(10000..99999)
     end
     make_key_array(@key)
+    @key
   end
 
   def make_key_array(key)
@@ -29,6 +31,6 @@ class Key
     shift_values = shift_values.map do |string|
       string.to_i
     end
-    @key = shift_values
+    @key_offsets = shift_values
   end
 end

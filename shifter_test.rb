@@ -19,12 +19,12 @@ class ShifterTest < Minitest::Test
 
   def test_finds_new_value
     shift = Shifter.new('a', 12)
-    assert_equal 'm', shift.new_index
+    assert_equal 'm', shift.crypt_char
   end
 
   def test_finds_new_value_over_array
     shift = Shifter.new('f', 41)
-    assert_equal '4', shift.new_index
+    assert_equal '4', shift.crypt_char
   end
 
 
